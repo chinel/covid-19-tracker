@@ -12,6 +12,10 @@ body {
   padding: 20px;
 }
 
+.app__left {
+  flex: 0.9; /* this makes the app left use up 90% of the container*/
+}
+
 .app__header {
   display: flex;
   align-items: center;
