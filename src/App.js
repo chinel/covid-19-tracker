@@ -13,6 +13,7 @@ import Map from "./Map";
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
+  const [countryInfo, setCountryInfo] = useState({});
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -31,12 +32,19 @@ function App() {
     getCountriesData();
   }, []);
 
-  const onCountryChange = (event) => {
+  const onCountryChange = async (event) => {
     const countryChange = event.target.value;
     setCountry(countryChange);
     //Get country covid 19 info
-    const url = country === 'worldwide' ? 'https://disease.sh/v3/covid-19/all'
-    : `https://disease.sh/v3/covid-19/countries/${country}`;
+    const url =
+      country === "worldwide"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${country}`;
+
+    const fetchCountryDetails = await fetch(url);
+    const countryResponse = await fetchCountryDetails.json();
+    setCountryInfo(countryResponse);
+    console.log("country info", countryInfo);
   };
   return (
     <div className="app">
