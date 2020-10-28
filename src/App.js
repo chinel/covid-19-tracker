@@ -21,10 +21,13 @@ function App() {
         "https://disease.sh/v3/covid-19/countries"
       );
       const countriesResponse = await countriesFetched.json();
-      const countriesInfo = countriesResponse.map((country) => ({
-        name: country.country,
-        value: country.countryInfo.iso2,
-      }));
+      const countriesInfo = countriesResponse.map((country) => {
+        return {
+          name: country.country,
+          value: country.countryInfo.iso2,
+          id: country.country,
+        };
+      });
 
       setCountries(countriesInfo);
     };
@@ -41,9 +44,13 @@ function App() {
         ? "https://disease.sh/v3/covid-19/all"
         : `https://disease.sh/v3/covid-19/countries/${country}`;
 
-    const fetchCountryDetails = await fetch(url);
-    const countryResponse = await fetchCountryDetails.json();
-    setCountryInfo(countryResponse);
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setCountryInfo(data);
+        console.log("country info", countryInfo);
+      });
     console.log("country info", countryInfo);
   };
   return (
@@ -61,7 +68,9 @@ function App() {
             >
               <MenuItem value="worldwide">Worldwide</MenuItem>
               {countries.map((country) => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
+                <MenuItem key={country.id} value={country.value}>
+                  {country.name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
