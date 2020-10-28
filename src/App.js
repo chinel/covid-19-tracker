@@ -34,6 +34,9 @@ function App() {
   const onCountryChange = (event) => {
     const countryChange = event.target.value;
     setCountry(countryChange);
+    //Get country covid 19 info
+    const url = country === 'worldwide' ? 'https://disease.sh/v3/covid-19/all'
+    : `https://disease.sh/v3/covid-19/countries/${country}`;
   };
   return (
     <div className="app">
