@@ -28,7 +28,7 @@ function App() {
 
     getCountriesData();
     //console.log("Country info here", countryInfo);
-  }, [countryInfo]);
+  }, []);
 
   const onCountryChange = async (event) => {
     const countryChange = event.target.value;
@@ -45,8 +45,10 @@ function App() {
         setCountryInfo(data);
         // console.log("country info", countryInfo); this will not work any side effect should be done inside useffect
       });
-    console.log("country info", countryInfo);
+    // console.log("country info", countryInfo);
   };
+
+  console.log("country info", countryInfo);
   return (
     <div className="app">
       <div className="app__left">
@@ -72,9 +74,21 @@ function App() {
         </div>
         {/* INFO BOXES*/}
         <div className="app__stats">
-          <InfoBox title="Coronavirus Cases" cases={1200} total={4000} />
-          <InfoBox title="Recovered" cases={120} total={3000} />
-          <InfoBox title="Deaths" cases={2000} total={2000} />
+          <InfoBox
+            title="Coronavirus Cases"
+            cases={countryInfo.todayCases}
+            total={countryInfo.cases}
+          />
+          <InfoBox
+            title="Recovered"
+            cases={countryInfo.todayRecovered}
+            total={countryInfo.recovered}
+          />
+          <InfoBox
+            title="Deaths"
+            cases={countryInfo.todayDeaths}
+            total={countryInfo.deaths}
+          />
         </div>
         {/** MAP */}
         <Map />
