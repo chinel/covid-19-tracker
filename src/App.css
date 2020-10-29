@@ -28,6 +28,10 @@ body {
   justify-content: space-between;
 }
 
+.app__headerFilter {
+  width: 130px;
+}
+
 @media screen and (max-width: 990px) {
   .app {
     flex-direction: column;

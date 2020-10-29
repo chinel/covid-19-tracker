@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createRef } from "react";
 import "./App.css";
 import {
   Card,
@@ -14,6 +14,7 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const wrapper = createRef();
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -33,7 +34,8 @@ function App() {
     };
 
     getCountriesData();
-  }, []);
+    console.log("Country info here", countryInfo);
+  }, [countryInfo]);
 
   const onCountryChange = async (event) => {
     const countryChange = event.target.value;
@@ -61,16 +63,17 @@ function App() {
           <h1>Covid 19 tracker</h1>
           <FormControl className="app_dropdown">
             <Select
-              className=""
+              native
+              className="app__headerFilter"
               variant="outlined"
               value={country}
               onChange={onCountryChange}
             >
-              <MenuItem value="worldwide">Worldwide</MenuItem>
+              <option value="worldwide">Worldwide</option>
               {countries.map((country) => (
-                <MenuItem key={country.id} value={country.value}>
+                <option key={country.id} value={country.value}>
                   {country.name}
-                </MenuItem>
+                </option>
               ))}
             </Select>
           </FormControl>
