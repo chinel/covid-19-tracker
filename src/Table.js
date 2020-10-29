@@ -5,14 +5,16 @@ const Table = ({ countries }) => {
   return (
     <div className="table">
       <table>
-        {countries.map(({ country, cases }) => (
-          <tr>
-            <td>{country}</td>
-            <td>
-              <strong>{cases}</strong>
-            </td>
-          </tr>
-        ))}
+        <tbody>
+          {countries.map(({ country, cases }) => (
+            <tr key={country}>
+              <td>{country}</td>
+              <td>
+                <strong>{cases}</strong>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

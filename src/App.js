@@ -38,19 +38,20 @@ function App() {
     };
 
     getCountriesData();
-    //console.log("Country info here", countryInfo);
-  }, []);
+    console.log("Country info here", countryInfo);
+  }, [countryInfo]);
 
-  const onCountryChange = async (event) => {
+  const onCountryChange = (event) => {
     const countryChange = event.target.value;
+    console.log("country change", countryChange);
     setCountry(countryChange);
     //Get country covid 19 info
     const url =
-      country === "worldwide"
+      countryChange === "worldwide"
         ? "https://disease.sh/v3/covid-19/all"
-        : `https://disease.sh/v3/covid-19/countries/${country}`;
+        : `https://disease.sh/v3/covid-19/countries/${countryChange}`;
 
-    await fetch(url)
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
