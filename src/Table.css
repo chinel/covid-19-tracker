@@ -3,4 +3,18 @@
   overflow: scroll;
   height: 400px;
   overflow-x: hidden;
+  color: #6a5d5d;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table table td {
+  padding: 0.5rem;
+}
+
+.table tr:nth-of-type(odd) {
+  background-color: #f3f2f8;
 }
