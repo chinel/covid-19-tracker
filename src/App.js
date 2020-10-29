@@ -1,12 +1,6 @@
-import React, { useEffect, useState, createRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import {
-  Card,
-  CardContent,
-  FormControl,
-  MenuItem,
-  Select,
-} from "@material-ui/core";
+import { Card, CardContent, FormControl, Select } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 
@@ -14,7 +8,6 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
-  const wrapper = createRef();
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -34,7 +27,7 @@ function App() {
     };
 
     getCountriesData();
-    console.log("Country info here", countryInfo);
+    //console.log("Country info here", countryInfo);
   }, [countryInfo]);
 
   const onCountryChange = async (event) => {
@@ -49,9 +42,8 @@ function App() {
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setCountryInfo(data);
-        console.log("country info", countryInfo);
+        // console.log("country info", countryInfo); this will not work any side effect should be done inside useffect
       });
     console.log("country info", countryInfo);
   };
