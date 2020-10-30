@@ -6,8 +6,9 @@ export const sortData = (data) => {
 export const buildChartData = (data, casesType = "cases") => {
   const chartData = [];
   let lastDataPoint;
-  console.log(typeof data[casesType]);
-  for (let date of data[casesType]) {
+  console.log(data.cases);
+  console.log(data[casesType]);
+  for (let date in data.cases) {
     if (lastDataPoint) {
       const newDataPoint = {
         x: date,
