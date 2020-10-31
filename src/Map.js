@@ -1,4 +1,5 @@
 import React from "react";
+import { Map as LeafletMap, TileLayer } from "react-leaflet";
 
 const Map = () => {
   return (
