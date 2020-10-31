@@ -18,6 +18,7 @@ function App() {
     lng: -40.4796,
   });
   const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -42,6 +43,7 @@ function App() {
       setCountries(countriesInfo);
       const sortedData = sortData(countriesResponse);
       setTableData(sortedData);
+      setMapCountries(countriesResponse);
     };
 
     getCountriesData();
@@ -62,6 +64,10 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
+        setCountry(countryChange);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
+
         // console.log("country info", countryInfo); this will not work any side effect should be done inside useffect
       });
     // console.log("country info", countryInfo);
@@ -110,7 +116,7 @@ function App() {
           />
         </div>
         {/** MAP */}
-        <Map zoom={mapZoom} center={mapCenter} />
+        <Map countries={mapCountries} zoom={mapZoom} center={mapCenter} />
       </div>
       <div className="app__right">
         <Card>
