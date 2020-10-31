@@ -42,8 +42,8 @@ export const buildChartData = (data, casesType = "cases") => {
 };
 
 //Draw circles on the map with interactive tooltip
-export const showDataMap = (data, casesType = "cases") => {
-  data.map((country) => (
+export const showDataMap = (data, casesType = "cases") =>
+  { return data.map((country) => (
     <Circle
       center={[country.countryInfo.lat, country.countryInfo.long]}
       fillOpacity={0.4}
@@ -58,4 +58,4 @@ export const showDataMap = (data, casesType = "cases") => {
       </Popup>
     </Circle>
   ));
-};
+    }
