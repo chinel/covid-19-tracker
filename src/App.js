@@ -120,7 +120,12 @@ function App() {
           />
         </div>
         {/** MAP */}
-        <Map casesType={casesType} countries={mapCountries} zoom={mapZoom} center={mapCenter} />
+        <Map
+          casesType={casesType}
+          countries={mapCountries}
+          zoom={mapZoom}
+          center={mapCenter}
+        />
       </div>
       <div className="app__right">
         <Card>
@@ -128,9 +133,9 @@ function App() {
             <h3>Live cases by country</h3>
             {/* TABLE*/}
             <Table countries={tableData} />
-            <h3>Worldwide new cases</h3>
+            <h3>Worldwide new {casesType}</h3>
             {/** GRAPH */}
-            <LineGraph casesType="cases" />
+            <LineGraph casesType={casesType} />
           </CardContent>
         </Card>
       </div>

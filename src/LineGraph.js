@@ -49,19 +49,19 @@ const options = {
   },
 };
 
-const LineGraph = ({ casesType = "cases" }) => {
+const LineGraph = ({ casesType }) => {
   const [data, setData] = useState({});
   useEffect(() => {
     const fetchData = async () => {
       await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=20")
         .then((response) => response.json())
         .then((data) => {
-          const chartData = buildChartData(data, "cases");
+          const chartData = buildChartData(data, casesType);
           setData(chartData);
         });
     };
     fetchData();
-  }, []);
+  }, [casesType]);
 
   return (
     <div className="lineGraph">
