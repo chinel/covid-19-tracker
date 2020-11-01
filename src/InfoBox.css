@@ -28,3 +28,7 @@
 .infoBox--red {
   border-color: red;
 }
+
+.infoBox__cases--green {
+  color: lightgreen !important;
+}
