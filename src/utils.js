@@ -42,8 +42,8 @@ export const buildChartData = (data, casesType = "cases") => {
 };
 
 //Draw circles on the map with interactive tooltip
-export const showDataMap = (data, casesType = "cases") =>
-  { return data.map((country) => (
+export const showDataMap = (data, casesType = "cases") => {
+  return data.map((country) => (
     <Circle
       center={[country.countryInfo.lat, country.countryInfo.long]}
       fillOpacity={0.4}
@@ -54,8 +54,16 @@ export const showDataMap = (data, casesType = "cases") =>
       }
     >
       <Popup>
-        <h1>I am a pop up</h1>
+        <div>
+          <div
+            style={{ backgroundImage: `url(${country.countryInfo.flag})` }}
+          />
+          <div>{country.country}</div>
+          <div>Cases:{numeral(country.cases).format("0,0")}</div>
+          <div>Recovered:{numeral(country.recovered).format("0,0")}</div>
+          <div>Deaths:{numeral(country.deaths).format("0,0")}</div>
+        </div>
       </Popup>
     </Circle>
   ));
-    }
+};
