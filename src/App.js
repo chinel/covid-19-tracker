@@ -64,7 +64,14 @@ function App() {
       .then((data) => {
         setCountryInfo(data);
         setCountry(countryChange);
-        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        const latLng =
+          countryChange === "worldwide"
+            ? {
+                lat: 34.80746,
+                lng: -40.4796,
+              }
+            : { lat: data.countryInfo.lat, lng: data.countryInfo.long };
+        setMapCenter(latLng);
         setMapZoom(4);
 
         // console.log("country info", countryInfo); this will not work any side effect should be done inside useffect
