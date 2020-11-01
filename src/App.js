@@ -48,12 +48,10 @@ function App() {
     };
 
     getCountriesData();
-    console.log("Country info here", countryInfo);
   }, [countryInfo]);
 
   const onCountryChange = (event) => {
     const countryChange = event.target.value;
-    console.log("country change", countryChange);
     setCountry(countryChange);
     //Get country covid 19 info
     const url =
@@ -74,7 +72,7 @@ function App() {
     // console.log("country info", countryInfo);
   };
 
-  console.log("country info", countryInfo);
+  //console.log("country info", countryInfo);
   return (
     <div className="app">
       <div className="app__left">
